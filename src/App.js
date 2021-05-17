@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import Home from './components/home';
+import Profile from './components/profile';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <nav>
+      <Link to="/home">홈(Link)</Link>
+      <Link to="/profile">프로필(Link)</Link>
+    </nav>
+      <Switch>
+        <Route path={["/home", "/"]} exact> {/* exact : 현재 location과 path가 정확히 일치해야만 라우팅 한다는 의미 */}
+          <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
